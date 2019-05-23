@@ -1,0 +1,87 @@
+#include <stdio.h> 
+
+#include <stdlib.h>
+
+#include <string.h>
+
+
+
+int main()
+
+{
+
+    char number[10][3]={"零","壹","貳","參","肆","伍","陸","柒","捌","玖"};
+
+    char ch[3][3]={"仟","佰","拾"};
+
+    char bigger[3][3]={"兆","億","萬"};
+
+    int num, num1, len, group, start, num2, num3=0, flag=0;
+
+    char n[20];
+
+    printf("請輸入一個整數(此數需要小於16位數)：" );
+
+    scanf("%s",n); 
+
+    len = strlen(n);
+
+    if (len>16)  
+
+    {
+
+                printf("此整數長度超過16位數, 無法轉換...\n");
+
+                exit(0);
+
+    }
+
+    group=(len-1)/4+1;
+
+    printf("轉換後的結果：");
+
+    for(num=0;num<group;num++)
+
+    {
+
+                        flag=0;
+
+                        if (num==0) start=(4-len%4)%4;
+
+                        else start=0;
+
+                        for (num1=start;num1<4;num1++)
+
+                        {
+
+                            num2=n[num3++]-48;
+
+                            if(num2==0) continue; 
+
+                            printf("%s", number[num2]);
+
+                            if(num1!=3) 
+
+                             printf("%s",ch[num1]);
+
+                             flag=1;
+
+                        }
+
+                        if (group!=1 && num!=group-1 && flag!=0)
+
+                        {
+
+                                     printf("%s",bigger[4-group+num]);
+
+                        }
+
+    }
+
+    printf("\n");
+
+    system("pause");
+
+    return 0;
+
+}
